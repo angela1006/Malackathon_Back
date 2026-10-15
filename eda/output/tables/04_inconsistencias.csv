@@ -1,0 +1,28 @@
+﻿tipo,comprobacion,n_afectados,base,pct,tratamiento
+Metadato,Columna indice sin nombre ('Unnamed: 0') = 0..n-1,302850,302850,100.0,Eliminar: es el indice de pandas exportado al CSV.
+Duplicados,Filas exactamente duplicadas,0,302850,0.0,Ninguna accion (0).
+Duplicados,"Pares (client_id, vehicle_id) repetidos",0,302850,0.0,"Ninguna accion (0): la clave de la fila es (cliente, vehiculo)."
+Estructura,Filas cuyo vehicle_id aparece en >1 fila (vehiculo con varios clientes/roles),104979,302850,34.66,NO deduplicar: es una relacion N:M real (OWNER/USER/LEGACY...). Contar vehiculos unicos con drop_duplicates('vehicle_id') cuando se analice el parque.
+Estructura,Filas de clientes-flota (>=10 filas por client_id),62280,302850,20.56,Reportar estadisticos tambien a nivel cliente/vehiculo unico; evaluar excluir/ponderar flotas.
+Formato,"zipcode con formato invalido (prefijo 'A-'/'CH-', texto, >4 digitos)",5,302850,0.0,Normalizar prefijos; resto -> NaN. (zipcode se excluye como variable de todos modos).
+Formato,trip_distance_mode multimodal (lista de bins en texto),7049,302850,2.33,Parsear a numerico; lista -> NaN + flag *_multimodal; columna excluida del analisis.
+Formato,speed_mode multimodal (lista de bins en texto),1223,302850,0.4,Idem.
+Coherencia,Registros con zipcode presente pero SIN datos socioeconomicos (cp no cruzado),2879,302850,0.95,Imputar mediana por pais + flag socio_missing.
+Coherencia,population = 0 con clientes residentes,73,302850,0.02,Tratar como NaN y reimputar (mediana por pais).
+Coherencia,ELECTRIC con fuel_type distinto de ELECTRIC,0,302850,0.0,Ninguna (0).
+Coherencia,COMBUSTION con fuel_type que incluye ELECTRIC,0,302850,0.0,Ninguna (0).
+Coherencia,PLUGIN_HYBRID con fuel_type sin componente ELECTRIC,0,302850,0.0,Ninguna (0).
+Coherencia,operating_hours_total > horas desde el primer registro,0,302850,0.0,Ninguna (0): coherente.
+Coherencia,Fecha de primer registro posterior a la fecha de referencia,0,302850,0.0,Ninguna (0).
+Plausibilidad,speed_average > 150 km/h (velocidad MEDIA),26,120468,0.02,Convertir a NaN (valor fisicamente imposible como media).
+Plausibilidad,fuel_consumption_average > 30 l/100km,401,122125,0.33,Convertir a NaN.
+Plausibilidad,trip_distance_average > 100 km (viaje medio),106,116993,0.09,Mantener (posibles furgonetas/larga distancia); winsorizar si se modela.
+Plausibilidad,speed_average < 5 km/h,1784,120468,1.48,"Mantener; vehiculos casi sin uso (mediana 0,14 h): excluir al estimar habitos de conduccion."
+Plausibilidad,Telematica presente con trip_distance_all_counter = 0 (sin viajes),6027,123020,4.9,Mantener; son vehiculos conectados sin uso. Excluir al estimar medias de conduccion.
+Plausibilidad,operating_hours_total = 0,140,128492,0.11,Idem.
+Heaping,months_as_mb_customer: valor 36 (a nivel cliente),21179,173456,12.21,Pico anomalo (12% de clientes con exactamente 36 meses): posible valor por defecto/migracion. No se modifica; flag recomendado y cautela al interpretar antiguedad.
+Heaping,months_as_mb_customer: valor 0 (a nivel cliente),7254,173456,4.18,Mezcla de clientes realmente nuevos y valores por defecto; no se modifica.
+Coherencia,is_current_vehicle=False pero con telematica,40452,122684,32.97,Plausible (historico de uso); mantener.
+Coherencia,currently_connected_vehicles = 0 pero la fila tiene telematica,10259,31751,32.31,"Atributo de cliente vs. dato de vehiculo: definiciones distintas (no es error), interpretar con cuidado."
+Cobertura,model_class nulo (serie sin clase asignada en ningun registro),3369,302850,1.11,No se puede inferir via model_series (esas series nunca tienen clase): categoria 'UNKNOWN'.
+Cobertura,Electricos con operating_hours/speed/fuel_consumption (todas deberian ser nulas si el esquema es distinto),0,20944,0.0,"0 filas: los electricos solo reportan distancia de viaje; velocidad, horas y consumo son NaN estructural (esquema telematico distinto). No imputar; analizar por separado."

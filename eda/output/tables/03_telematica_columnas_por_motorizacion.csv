@@ -1,0 +1,6 @@
+﻿engine,trip_distance_average,trip_distance_all_counter,operating_hours_total,fuel_consumption_average,speed_average,speed_all_counter
+(nulo),40.9,42.8,42.7,41.0,41.4,41.8
+COMBUSTION,30.5,33.3,47.2,45.8,41.5,41.9
+ELECTRIC,41.9,43.0,0.0,0.0,0.0,0.0
+MILD_HYBRID,44.3,45.5,48.4,46.9,45.8,46.3
+PLUGIN_HYBRID,51.1,52.2,52.5,41.6,52.8,53.2

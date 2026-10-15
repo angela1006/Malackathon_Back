@@ -1,0 +1,6 @@
+_pycache
+
+__pycache__/
+*.pyc
+datos_reto_mercedes_benz_malackathon.csv
+eda/output/dataset_limpio.parquet

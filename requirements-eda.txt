@@ -1,0 +1,11 @@
+pandas>=2.2
+numpy
+pyarrow
+matplotlib
+jupyter
+notebook
+ipykernel
+ipykernel
+nbformat
+nbclient
+nbconvert

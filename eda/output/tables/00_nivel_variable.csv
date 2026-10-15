@@ -1,0 +1,38 @@
+﻿,pct_clientes_con_valor_unico,nivel
+vehicle_id,73.26,fila (cliente-vehiculo)
+age_range,100.0,cliente
+gender_derived,100.0,cliente
+model_series,77.02,fila (cliente-vehiculo)
+vehicle_type,75.25,fila (cliente-vehiculo)
+model_class,79.31,fila (cliente-vehiculo)
+product_group,95.12,fila (cliente-vehiculo)
+engine_concept,81.39,fila (cliente-vehiculo)
+country_code,100.0,cliente
+fuel_type,83.12,fila (cliente-vehiculo)
+date_of_first_registration,73.39,fila (cliente-vehiculo)
+is_current_vehicle,80.07,fila (cliente-vehiculo)
+role,93.05,fila (cliente-vehiculo)
+role_type,99.69,fila (cliente-vehiculo)
+months_as_mb_customer,100.0,cliente
+currently_connected_vehicles,100.0,cliente
+finance_leasing_status,100.0,cliente
+workshop_visits_warranty_goodwill,77.96,fila (cliente-vehiculo)
+consent_phone_communication_channel,100.0,cliente
+consent_epost_communication_channel,100.0,cliente
+consent_post_communication_channel,100.0,cliente
+purchasing_power_per_inhabitant_eur,100.0,cliente
+purchasing_power_per_household_eur,100.0,cliente
+population,100.0,cliente
+zipcode,100.0,cliente
+trip_distance_average,83.86,fila (cliente-vehiculo)
+trip_distance_mode,86.72,fila (cliente-vehiculo)
+trip_distance_median,86.4,fila (cliente-vehiculo)
+trip_distance_all_counter,83.38,fila (cliente-vehiculo)
+operating_hours_total,83.13,fila (cliente-vehiculo)
+fuel_consumption_average,83.72,fila (cliente-vehiculo)
+speed_average,83.75,fila (cliente-vehiculo)
+speed_mode,86.41,fila (cliente-vehiculo)
+speed_median,86.81,fila (cliente-vehiculo)
+speed_all_counter,83.62,fila (cliente-vehiculo)
+number_of_households,100.0,cliente
+purchasing_power_millions_eur,100.0,cliente

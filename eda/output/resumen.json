@@ -1,0 +1,155 @@
+{
+  "overview": {
+    "filas": 302850,
+    "columnas": 39,
+    "clientes_unicos": 173456,
+    "vehiculos_unicos": 244519,
+    "memoria_MB": 150.0,
+    "filas_duplicadas_exactas": 0,
+    "pares_cliente_vehiculo_duplicados": 0,
+    "vehiculos_en_>1_filas": 46648,
+    "filas_con_vehiculo_repetido": 104979,
+    "clientes_con_>1_vehiculo": 46375,
+    "max_vehiculos_por_cliente": 561,
+    "p90_vehiculos_por_cliente": 2.0,
+    "clientes_flota_>=10_veh": 1881,
+    "pct_filas_de_clientes_flota_>=10": 20.56
+  },
+  "columnas_nivel_cliente": [
+    "age_range",
+    "gender_derived",
+    "country_code",
+    "months_as_mb_customer",
+    "currently_connected_vehicles",
+    "finance_leasing_status",
+    "consent_phone_communication_channel",
+    "consent_epost_communication_channel",
+    "consent_post_communication_channel",
+    "purchasing_power_per_inhabitant_eur",
+    "purchasing_power_per_household_eur",
+    "population",
+    "zipcode",
+    "number_of_households",
+    "purchasing_power_millions_eur"
+  ],
+  "vehiculos_con_atributos_contradictorios": {
+    "model_series": 0,
+    "vehicle_type": 0,
+    "model_class": 0,
+    "engine_concept": 0,
+    "fuel_type": 0,
+    "date_of_first_registration": 0,
+    "product_group": 0
+  },
+  "vehiculos_con_telematica_distinta_entre_clientes": {
+    "operating_hours_total": 9021,
+    "trip_distance_average": 8836,
+    "speed_average": 8634
+  },
+  "limpieza": {
+    "zipcode_formato_invalido": 5,
+    "trip_distance_mode_multimodal": 7049,
+    "speed_mode_multimodal": 1223,
+    "speed_average_implausible_a_nan": 26,
+    "fuel_consumption_average_implausible_a_nan": 401,
+    "fecha_referencia": "2026-10-02",
+    "gender_derived_a_UNKNOWN": 33923,
+    "engine_concept_a_UNKNOWN": 134390,
+    "fuel_type_a_UNKNOWN": 178745,
+    "model_class_a_UNKNOWN": 3369,
+    "vehicle_type_a_UNKNOWN": 922,
+    "filas_con_telematica": 144671,
+    "population_cero_a_nan": 73,
+    "socio_missing": 19087,
+    "months_as_mb_customer_imputados": 4
+  },
+  "pct_filas_con_telematica": 47.77,
+  "electricos": {
+    "filas": 20944,
+    "pct_con_telematica": 41.95,
+    "pct_no_nulo": {
+      "trip_distance_average": 41.95,
+      "trip_distance_all_counter": 42.98,
+      "operating_hours_total": 0.0,
+      "fuel_consumption_average": 0.0,
+      "speed_average": 0.0,
+      "speed_all_counter": 0.0
+    }
+  },
+  "evidencia_exclusion": {
+    "millones/(per_inhab*pop) ratio min,max": [
+      0.999700967391574,
+      1.0007420887488876
+    ],
+    "spearman_household_vs_inhabitant": 0.9562064827449411,
+    "spearman_population_vs_households": 0.9983693243823522,
+    "role_vs_role_type": {
+      "B2B": {
+        "DRIVER": 5521,
+        "LEGACY": 0,
+        "OWNER": 0,
+        "TEMP_USER": 0,
+        "USER": 0
+      },
+      "B2C": {
+        "DRIVER": 0,
+        "LEGACY": 11314,
+        "OWNER": 264418,
+        "TEMP_USER": 3966,
+        "USER": 17631
+      }
+    },
+    "series_con_una_unica_clase": "82 de 88",
+    "speed_mode == speed_median (%)": 43.1
+  },
+  "variables_analiticas": {
+    "numericas": [
+      "months_as_mb_customer",
+      "currently_connected_vehicles",
+      "workshop_visits_warranty_goodwill",
+      "purchasing_power_per_inhabitant_eur",
+      "population",
+      "trip_distance_average",
+      "trip_distance_median",
+      "trip_distance_all_counter",
+      "operating_hours_total",
+      "fuel_consumption_average",
+      "speed_average",
+      "speed_median",
+      "speed_all_counter",
+      "vehicle_age_years"
+    ],
+    "categoricas": [
+      "age_range",
+      "gender_derived",
+      "model_class",
+      "product_group",
+      "engine_concept",
+      "country_code",
+      "fuel_type",
+      "is_current_vehicle",
+      "role",
+      "finance_leasing_status",
+      "has_telematics",
+      "socio_missing"
+    ],
+    "excluidas": [
+      "Unnamed: 0",
+      "client_id",
+      "vehicle_id",
+      "zipcode",
+      "vehicle_type",
+      "model_series",
+      "date_of_first_registration",
+      "role_type",
+      "consent_phone_communication_channel",
+      "consent_epost_communication_channel",
+      "consent_post_communication_channel",
+      "purchasing_power_millions_eur",
+      "number_of_households",
+      "purchasing_power_per_household_eur",
+      "trip_distance_mode",
+      "speed_mode"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+﻿columna,categoria,motivo,n_unicos,pct_nulos
+Unnamed: 0,Metadato,Indice de fila exportado por pandas (0..n-1). No es informacion del negocio.,302850,0.0
+client_id,Identificador,"Hash SHA-256 pseudonimizado del cliente. Cardinalidad ~173k, sin significado analitico; solo sirve como clave para agregar por cliente.",173456,0.0
+vehicle_id,Identificador,"Hash SHA-256 pseudonimizado del vehiculo. Cardinalidad ~245k, sin significado analitico; solo sirve como clave de agregacion.",244519,0.0
+zipcode,Identificador geografico,"Codigo postal como texto (~4,6k niveles). Es la clave con la que se enriquecieron las columnas socioeconomicas, cuya informacion ya esta en purchasing_power_* y population. Ademas tiene formatos inconsistentes.",4610,5.33
+vehicle_type,Identificador de producto,"Denominacion comercial (p.ej. 'GLC 220 d 4MATIC'), 1.436 niveles. Alta cardinalidad y redundante con model_class + engine_concept.",1436,0.3
+model_series,Codigo interno,"Codigo numerico de serie (p.ej. 177, 247). Es NOMINAL aunque sea un entero; tratarlo como numerico induciria orden falso. Redundante con model_class (82 de 88 series mapean a una unica clase).",88,0.0
+date_of_first_registration,Fecha cruda,Se sustituye por la variable derivada vehicle_age_years (la fecha absoluta no generaliza y la edad es directamente interpretable).,5316,1.38
+role_type,Redundante,"Funcion determinista de role (DRIVER=B2B; resto=B2C). Corr. perfecta, sin informacion adicional.",2,0.0
+consent_phone_communication_channel,Metadato de contacto/compliance,"Flag RGPD del canal de contacto. Informa de si se puede contactar, no del comportamiento del cliente/vehiculo. Se conserva solo para activacion.",2,0.0
+consent_epost_communication_channel,Metadato de contacto/compliance,Flag RGPD del canal de contacto (e-mail). Ver nota anterior.,2,0.0
+consent_post_communication_channel,Metadato de contacto/compliance,Flag RGPD del canal de contacto (correo postal). Ver nota anterior.,2,0.0
+purchasing_power_millions_eur,Derivada / redundante,"Es exactamente purchasing_power_per_inhabitant_eur * population (ratio 0,9997-1,0007). No aporta informacion nueva.",4973,6.3
+number_of_households,Redundante,"Spearman 0,998 con population. Multicolinealidad casi perfecta.",2296,6.28
+purchasing_power_per_household_eur,Redundante,"Spearman 0,956 con purchasing_power_per_inhabitant_eur (ratio ~2,24 = tamano medio de hogar). Se conserva solo la version per capita.",5035,6.3
+trip_distance_mode,Artefacto tecnico,"Moda de un histograma discretizado (marcas de bin). Columna de texto mixta: en ~2,3% de las filas es una lista con todos los bins (empate = sin moda real). Su informacion util ya esta en average/median.",108,59.38
+speed_mode,Artefacto tecnico,"Igual que trip_distance_mode: marcas de bin (0,125; 10,0625...) y listas multimodales (0,4%). Solo coincide con speed_median en el 43% de las filas.",17,59.82
