@@ -1,0 +1,6 @@
+﻿cluster,nombre_segmento,n_clientes,pct_clientes,Edad (punto medio del rango),Meses como cliente MB,N.º vehículos (tope 10),Antigüedad vehículos (años),Cuota electrificados (0-1),Cuota gama premium (0-1),Tiene leasing activo (0/1),resumen
+0,Particular estable,62706,36.15,48.78,31.77,1.14,6.23,0.01,0.01,0.0,"Un solo vehículo, baja electrificación, perfil medio de la base."
+1,Multi-vehículo fiel,16334,9.42,51.33,58.7,4.3,5.33,0.31,0.3,0.36,"Varios vehículos o mini-flota, mucha antigüedad con la marca y alta telemetría."
+2,Leasing electrificado,33069,19.06,46.5,33.0,1.37,3.44,0.44,0.04,1.0,"Casi siempre con leasing activo, flota joven y alta cuota de híbridos/eléctricos."
+3,Senior electrificado,30767,17.74,53.4,28.83,1.18,3.99,0.96,0.02,0.0,Clientes mayores con parque muy electrificado y vehículos relativamente nuevos.
+4,Premium tradicional,30580,17.63,50.05,31.09,1.18,5.66,0.36,0.98,0.21,"Cartera mayoritariamente de gama alta (S/E/GLE/EQS…), electrificación moderada."

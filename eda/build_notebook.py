@@ -46,7 +46,7 @@ justificada de columnas de metadatos/identificadores.
 7. Estadísticos descriptivos
 8. Distribuciones
 9. Perfil del cliente
-10. Cubos y tablas derivadas (módulo `eda.cubes`)
+10. Cubos y tablas derivadas (módulo `eda.cubes`); 10.1 nulos tratados; 10.2 columnas escaladas
 11. **Resumen de hallazgos y conclusiones**
 """)
 
@@ -1081,6 +1081,40 @@ display(tratadas)
 print(f"{len(tratadas)} columnas sin nulos tras el tratamiento; "
       f"{int(tratadas['rellenados con valor real/estimado'].sum()):,} valores recuperados o estimados y "
       f"{int(tratadas['quedan como UNKNOWN'].sum()):,} marcados como UNKNOWN.")
+""")
+
+md("""
+### 10.2 Columnas de la tabla anterior, escaladas
+
+Las mismas columnas de la 10.1, ya sin nulos, preparadas para modelar. Las **numéricas** se estandarizan con `StandardScaler`
+(media 0, desviación 1) sobre la variable que entra en el análisis: `population` como `log_population` y `date_of_first_registration`
+como `vehicle_age_years`. Las **categóricas** no se escalan: se codifican *one-hot* (una columna 0/1 por categoría), que ya están en la
+misma escala que las numéricas estandarizadas.
+""")
+
+code("""
+from sklearn.preprocessing import StandardScaler
+
+VARIABLE_ESCALADA = {"population": "log_population", "date_of_first_registration": "vehicle_age_years"}
+filas = []
+for c in tratadas.index:
+    v = VARIABLE_ESCALADA.get(c, c)
+    if c not in feats and c not in VARIABLE_ESCALADA:
+        filas.append({"columna": c, "variable escalada": "—", "transformación": "no se escala (excluida del análisis)"})
+    elif pd.api.types.is_numeric_dtype(df[v]):
+        x = df[[v]].to_numpy()
+        z = StandardScaler().fit_transform(x).ravel()
+        filas.append({"columna": c, "variable escalada": v, "transformación": "StandardScaler",
+                      "media original": x.mean(), "desv. original": x.std(),
+                      "media escalada": z.mean(), "desv. escalada": z.std(), "mín. escalado": z.min(), "máx. escalado": z.max()})
+    else:
+        k = df[v].nunique()
+        filas.append({"columna": c, "variable escalada": v, "transformación": f"one-hot ({k} columnas 0/1)",
+                      "mín. escalado": 0, "máx. escalado": 1})
+escaladas = pd.DataFrame(filas).set_index("columna")[[
+    "variable escalada", "transformación", "media original", "desv. original",
+    "media escalada", "desv. escalada", "mín. escalado", "máx. escalado"]]
+display(escaladas.style.format("{:,.2f}", subset=escaladas.columns[2:], na_rep="—"))
 """)
 
 # =========================================================================== #
