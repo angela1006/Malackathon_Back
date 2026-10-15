@@ -344,7 +344,9 @@ def inconsistencies(raw: pd.DataFrame, clean_log: dict, cl_raw: pd.DataFrame) ->
 # --------------------------------------------------------------------------- #
 def exclusions(raw: pd.DataFrame):
     section("5. COLUMNAS EXCLUIDAS DEL ANALISIS")
-    rows = [(c, cat, why, raw[c].nunique(), round(raw[c].isna().mean() * 100, 2))
+    limpio = C.clean(raw)  # las derivadas de telemetria solo existen tras limpiar
+    col = lambda c: raw[c] if c in raw else limpio[c]
+    rows = [(c, cat, why, col(c).nunique(), round(col(c).isna().mean() * 100, 2))
             for c, (cat, why) in C.EXCLUDED_COLUMNS.items()]
     ex = pd.DataFrame(rows, columns=["columna", "categoria", "motivo", "n_unicos", "pct_nulos"])
     save_tab(ex, "05_columnas_excluidas", index=False)
@@ -431,7 +433,7 @@ def descriptives(raw: pd.DataFrame, clean_df: pd.DataFrame, cl_clean: pd.DataFra
     print(t_raw.to_string())
 
     feats = C.analytic_features(clean_df)
-    client_cols = set(level.index[level["nivel"] == "cliente"])
+    client_cols = set(level.index[level["nivel"] == "cliente"]) | {"personas_por_hogar", "log_population"}
     num = [c for c in feats if pd.api.types.is_numeric_dtype(clean_df[c]) and clean_df[c].dtype != bool and
            clean_df[c].nunique() > 2]
     cat = [c for c in feats if c not in num]
@@ -601,6 +603,10 @@ def main(path: str | None = None):
 
     out_cols = clean_df.columns.tolist()
     clean_df[out_cols].to_parquet(OUT / "dataset_limpio.parquet", index=False)
+    sin_nulos = C.drop_null_columns(clean_df)
+    sin_nulos.to_parquet(OUT / "dataset_sin_nulos.parquet", index=False)
+    sin_nulos.to_csv(OUT / "dataset_sin_nulos.csv", index=False, encoding="utf-8-sig")
+    print(f"dataset_sin_nulos: {sin_nulos.shape[1]} columnas (eliminadas {clean_df.shape[1] - sin_nulos.shape[1]} con NaN)")
     clean_df[C.analytic_features(clean_df)].head(0)  # valida que las columnas existen
     (OUT / "resumen.json").write_text(json.dumps(SUMMARY, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
     print(f"\nListo. Resultados en {OUT}")

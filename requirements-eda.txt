@@ -2,6 +2,7 @@ pandas>=2.2
 numpy
 pyarrow
 matplotlib
+scikit-learn
 jupyter
 notebook
 ipykernel

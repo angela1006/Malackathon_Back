@@ -1,11 +1,11 @@
 ﻿variable,n_niveles,pct_nulos,moda,pct_moda,top4,nivel
 age_range,6,0.0,45-54,21.01,"45-54: 21.0%, 65+: 20.2%, 55-64: 19.6%, 35-44: 18.9%",cliente
 gender_derived,3,0.0,male,64.99,"male: 65.0%, female: 18.1%, UNKNOWN: 16.9%",cliente
-model_class,43,0.0,GLC-Class,14.59,"GLC-Class: 14.6%, C-Class: 11.6%, A-Class: 10.7%, B-/GLA-/GLB-Class: 9.4%",fila
+model_class,42,0.0,GLC-Class,15.14,"GLC-Class: 15.1%, C-Class: 11.6%, A-Class: 10.7%, B-/GLA-/GLB-Class: 9.8%",fila
 product_group,4,0.0,P,84.4,"P: 84.4%, T: 13.8%, G: 1.4%, F: 0.3%",fila
-engine_concept,5,0.0,UNKNOWN,44.38,"UNKNOWN: 44.4%, COMBUSTION: 32.5%, MILD_HYBRID: 9.2%, PLUGIN_HYBRID: 7.0%",fila
+engine_concept,5,0.0,COMBUSTION,44.99,"COMBUSTION: 45.0%, UNKNOWN: 21.2%, MILD_HYBRID: 14.7%, PLUGIN_HYBRID: 9.8%",fila
 country_code,2,0.0,CH,66.16,"CH: 66.2%, AT: 33.8%",cliente
-fuel_type,8,0.0,UNKNOWN,59.02,"UNKNOWN: 59.0%, DIESEL: 11.9%, PETROL: 10.7%, ELECTRIC: 6.9%",fila
+fuel_type,8,0.0,DIESEL,32.36,"DIESEL: 32.4%, UNKNOWN: 23.9%, PETROL: 17.0%, ELECTRIC: 9.3%",fila
 is_current_vehicle,2,0.0,True,59.49,"True: 59.5%, False: 40.5%",fila
 role,5,0.0,OWNER,87.31,"OWNER: 87.3%, USER: 5.8%, LEGACY: 3.7%, DRIVER: 1.8%",fila
 finance_leasing_status,4,0.0,never_active,70.57,"never_active: 70.6%, active_FL_only: 23.7%, was_active: 3.3%, active_FL_and_CASH: 2.4%",cliente

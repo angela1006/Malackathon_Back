@@ -10,8 +10,20 @@ role_type,Redundante,"Funcion determinista de role (DRIVER=B2B; resto=B2C). Corr
 consent_phone_communication_channel,Metadato de contacto/compliance,"Flag RGPD del canal de contacto. Informa de si se puede contactar, no del comportamiento del cliente/vehiculo. Se conserva solo para activacion.",2,0.0
 consent_epost_communication_channel,Metadato de contacto/compliance,Flag RGPD del canal de contacto (e-mail). Ver nota anterior.,2,0.0
 consent_post_communication_channel,Metadato de contacto/compliance,Flag RGPD del canal de contacto (correo postal). Ver nota anterior.,2,0.0
-purchasing_power_millions_eur,Derivada / redundante,"Es exactamente purchasing_power_per_inhabitant_eur * population (ratio 0,9997-1,0007). No aporta informacion nueva.",4973,6.3
-number_of_households,Redundante,"Spearman 0,998 con population. Multicolinealidad casi perfecta.",2296,6.28
-purchasing_power_per_household_eur,Redundante,"Spearman 0,956 con purchasing_power_per_inhabitant_eur (ratio ~2,24 = tamano medio de hogar). Se conserva solo la version per capita.",5035,6.3
+purchasing_power_millions_eur,Derivada (combinada),"Es exactamente purchasing_power_per_inhabitant_eur * population (ratio 0,9997-1,0007): se reconstruye sin error a partir de esas dos.",4973,6.3
+number_of_households,Redundante (combinada),"Spearman 0,998 con population. Su informacion se conserva en personas_por_hogar = population / number_of_households.",2296,6.28
+purchasing_power_per_household_eur,Redundante (combinada),"Spearman 0,956 con purchasing_power_per_inhabitant_eur. pp_hogar / pp_habitante es exactamente personas_por_hogar, que sustituye a ambas columnas.",5035,6.3
 trip_distance_mode,Artefacto tecnico,"Moda de un histograma discretizado (marcas de bin). Columna de texto mixta: en ~2,3% de las filas es una lista con todos los bins (empate = sin moda real). Su informacion util ya esta en average/median.",108,59.38
 speed_mode,Artefacto tecnico,"Igual que trip_distance_mode: marcas de bin (0,125; 10,0625...) y listas multimodales (0,4%). Solo coincide con speed_median en el 43% de las filas.",17,59.82
+trip_distance_average,Telemetria (>40 % nulos),"~60 % nulos estructurales (rol, eléctricos, grupo F, año). No se imputa; se excluye del analisis. La presencia de dato queda en has_telematics.",5476,61.37
+trip_distance_median,Telemetria (>40 % nulos),Marcas de bin discretas + ~60 % nulos estructurales. Redundante con average; excluida.,13,59.38
+trip_distance_all_counter,Telemetria (>40 % nulos),~60 % nulos estructurales. Contador bruto; excluido (viajes_por_hora tampoco entra en el analisis).,10780,59.38
+fuel_consumption_average,Telemetria (>40 % nulos),~60 % nulos (no aplica a eléctricos + ausencia estructural). Excluida del analisis.,2267,59.67
+speed_average,Telemetria (>40 % nulos),~60 % nulos estructurales. Excluida; el perfil de uso no entra en la segmentacion de clientes.,8248,60.22
+speed_median,Telemetria (>40 % nulos),Marcas de bin + ~60 % nulos. Excluida.,12,59.82
+speed_all_counter,Telemetria (>40 % nulos),~60 % nulos estructurales. Excluido.,117441,59.82
+viajes_por_hora,Telemetria derivada,Ratio sobre columnas excluidas (~60 % nulos de base). Excluida del analisis.,96494,65.84
+seg_registrados_por_hora,Telemetria derivada,Ratio sobre speed_all_counter (excluido). Excluida del analisis.,114432,61.28
+asimetria_distancia,Telemetria derivada,Ratio sobre trip_distance_* (excluidas). Excluida del analisis.,10445,61.37
+asimetria_velocidad,Telemetria derivada,Ratio sobre speed_* (excluidas). Excluida del analisis.,13282,60.23
+operating_hours_total,Telemetria (>40 % nulos),"~52 % nulos estructurales (eléctricos, rol, etc.). Excluida del analisis; la presencia de cualquier telemetria queda en has_telematics.",80943,57.57
