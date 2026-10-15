@@ -1,4 +1,4 @@
-﻿"""Carga y limpieza del dataset del reto Mercedes-Benz (Malackathon).
+"""Carga y limpieza del dataset del reto Mercedes-Benz (Malackathon).
 
 Este modulo es reutilizable (por ejemplo desde la API FastAPI o desde un
 notebook): `run_eda.py` lo usa para generar el analisis, y cualquier otro
@@ -18,7 +18,11 @@ import pandas as pd
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 CSV_NAME = "datos_reto_mercedes_benz_malackathon.csv"
-_CANDIDATES = [BACKEND_DIR / CSV_NAME, BACKEND_DIR.parent / "Frontend" / CSV_NAME]
+_CANDIDATES = [
+    BACKEND_DIR / CSV_NAME,
+    BACKEND_DIR.parent / CSV_NAME,
+    BACKEND_DIR.parent / "Frontend" / CSV_NAME,
+]
 DEFAULT_DATA_PATH = next((p for p in _CANDIDATES if p.exists()), _CANDIDATES[0])
 
 # --------------------------------------------------------------------------- #
